@@ -58,6 +58,8 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+set :slim, { :pretty => true, :sort_attrs => false, :format => :html5 }
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

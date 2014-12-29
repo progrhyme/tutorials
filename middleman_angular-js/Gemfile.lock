@@ -75,9 +75,6 @@ GEM
       middleman-core (>= 3.0.2)
       multi_json (~> 1.0)
       rack-livereload
-    middleman-slim (0.1.2)
-      middleman (~> 3.2)
-      slim (~> 2.0)
     middleman-sprockets (3.4.1)
       middleman-core (>= 3.3)
       sprockets (~> 2.12.1)
@@ -132,6 +129,6 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 3.3.7)
   middleman-livereload (~> 3.1.0)
-  middleman-slim
+  slim (~> 2.0)
   tzinfo-data
   wdm (~> 0.1.0)

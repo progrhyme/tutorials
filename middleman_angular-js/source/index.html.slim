@@ -2,8 +2,19 @@
 title: Welcome to Middleman
 ---
 
-.welcome
-  h1 ToDo
-  form
-    input(type="text" required placeholder="新しい要件を入力")
-    button type="submit" 追加
+h1 ToDo
+form
+  input(type="text" required placeholder="新しい要件を入力")
+  button type="submit" 追加
+.
+  button 全て完了/未了
+  button class="active"
+    | 全部
+    span 3
+  button
+    | 未了
+    span 2
+  button
+    | 完了
+    span 1
+  button 完了アイテムを全て削除

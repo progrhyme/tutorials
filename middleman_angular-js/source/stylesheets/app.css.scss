@@ -1,0 +1,9 @@
+//colors
+$color_suva_gray_approx: #888;
+
+.todo-item .todo-title {
+    color: $color_suva_gray_approx;
+}
+.done .todo-title {
+    text-decoration: line-through;
+}

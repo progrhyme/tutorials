@@ -11,23 +11,27 @@ title: Welcome to Middleman
     span.input-group-btn
       button.btn.btn-default type="submit" 追加
   hr
+
   .btn-toolbar
     .btn-group
       button.btn.btn-success 全て完了/未了
     .btn-group
-      button.btn.btn-default.active
+      button.btn.btn-default ng-class="{active: !currentFilter}" ng-click="changeFilter()"
         | 全部
         span.badge ng-bind="todos.length"
-      button.btn.btn-default
+      button.btn.btn-default ng-class="{active: currentFilter == filter.remaining}" ng-click="changeFilter(filter.remaining)"
         | 未了
-        span.badge 2
-      button.btn.btn-default
+        span.badge n
+      button.btn.btn-default ng-class="{active: currentFilter == filter.done}" ng-click="changeFilter(filter.done)"
         | 完了
-        span.badge 1
+        span.badge n
     .btn-group
       button.btn.btn-danger 完了アイテムを全て削除
+
+  hr
+
   ul.list-unstyled
-    li.todo-item ng-repeat="todo in todos"
+    li.todo-item ng-repeat="todo in todos | filter:currentFilter" ng-class="{done: todo.done}"
       form.input-group.input-group-lg
         label.input-group-addon
           input type="checkbox" ng-model="todo.done"

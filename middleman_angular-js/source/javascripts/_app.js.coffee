@@ -11,4 +11,16 @@ angular.module("App", []).controller "MainController", [
 
       $scope.newTitle = ""
       return
+
+    $scope.filter =
+      done:
+        done: true
+
+      remaining:
+        done: false
+
+    $scope.currentFilter = null
+    $scope.changeFilter = (filter) ->
+      $scope.currentFilter = filter
+      return
 ]

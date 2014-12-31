@@ -18,13 +18,13 @@ title: Welcome to Middleman
     .btn-group
       button.btn.btn-default ng-class="{active: !currentFilter}" ng-click="changeFilter()"
         | 全部
-        span.badge ng-bind="todos.length"
+        span.badge ng-bind="allCount"
       button.btn.btn-default ng-class="{active: currentFilter == filter.remaining}" ng-click="changeFilter(filter.remaining)"
         | 未了
-        span.badge n
+        span.badge ng-bind="remainingCount"
       button.btn.btn-default ng-class="{active: currentFilter == filter.done}" ng-click="changeFilter(filter.done)"
         | 完了
-        span.badge n
+        span.badge ng-bind="doneCount"
     .btn-group
       button.btn.btn-danger 完了アイテムを全て削除
 

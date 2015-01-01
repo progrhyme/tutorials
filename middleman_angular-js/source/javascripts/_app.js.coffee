@@ -45,6 +45,24 @@ angular.module("App", []).controller("MainController", [
       $scope.editing.title = originalTitle  if todoForm.$invalid
       $scope.editing = originalTitle = null
       return
+
+    $scope.checkAll = ->
+      state = !!$scope.remainingCount
+      angular.forEach $scope.todos, (todo) ->
+        todo.done = state
+        return
+      return
+
+    $scope.removeDoneTodo = ->
+      $scope.todos = where($scope.todos, $scope.filter.remaining)
+      return
+
+    $scope.removeTodo = (currentTodo) ->
+      $scope.todos = where($scope.todos, (todo) ->
+        currentTodo isnt todo
+      )
+      return
+
 ]).directive "mySelect", [->
   (scope, $el, attrs) ->
     scope.$watch attrs.mySelect, (val) ->

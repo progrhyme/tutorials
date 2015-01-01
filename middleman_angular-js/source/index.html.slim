@@ -14,7 +14,7 @@ title: Welcome to Middleman
 
   .btn-toolbar
     .btn-group
-      button.btn.btn-success 全て完了/未了
+      button.btn.btn-success ng-click="checkAll()" 全て完了/未了
     .btn-group
       button.btn.btn-default ng-class="{active: !currentFilter}" ng-click="changeFilter()"
         | 全部
@@ -26,7 +26,7 @@ title: Welcome to Middleman
         | 完了
         span.badge ng-bind="doneCount"
     .btn-group
-      button.btn.btn-danger 完了アイテムを全て削除
+      button.btn.btn-danger ng-click="removeDoneTodo()" 完了アイテムを全て削除
 
   hr
 
@@ -47,7 +47,6 @@ title: Welcome to Middleman
           my-select="todo == editing" ng-blur="doneEdit(todoForm)"
         )
         span.input-group-btn.del-btn ng-if="todo != editing"
-          button.btn.btn-danger type="reset" 削除
     li.todo-item.done
       form.input-group.input-group-lg
         label.input-group-addon
@@ -60,4 +59,5 @@ title: Welcome to Middleman
         label.input-group-addon
           input type="checkbox"
         input.form-control.input-lg(type="text" required value="編集中の ToDo")
+          button.btn.btn-danger type="reset" ng-click="removeTodo(todo)" 削除
 

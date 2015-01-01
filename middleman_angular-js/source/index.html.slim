@@ -31,12 +31,22 @@ title: Welcome to Middleman
   hr
 
   ul.list-unstyled
-    li.todo-item ng-repeat="todo in todos | filter:currentFilter" ng-class="{done: todo.done}"
-      form.input-group.input-group-lg
+    li.todo-item(
+      ng-repeat="todo in todos | filter:currentFilter"
+      ng-class="{done: todo.done, editing: todo == editing}"
+    )
+      form.input-group.input-group-lg name="todoForm" ng-submit="doneEdit(todoForm)"
         label.input-group-addon
           input type="checkbox" ng-model="todo.done"
-        p.form-control.input-lg.todo-title ng-bind="todo.title"
-        span.input-group-btn.del-btn
+        p.form-control.input-lg.todo-title(
+          ng-hide="todo == editing" ng-dblclick="editTodo(todo)" ng-bind="todo.title"
+        )
+        input(
+          type="text" required class="form-control input-lg"
+          ng-model="todo.title" ng-show="todo == editing"
+          my-select="todo == editing" ng-blur="doneEdit(todoForm)"
+        )
+        span.input-group-btn.del-btn ng-if="todo != editing"
           button.btn.btn-danger type="reset" 削除
     li.todo-item.done
       form.input-group.input-group-lg

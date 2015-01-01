@@ -1,3 +1,3 @@
 //= require jquery
 //= require bootstrap
-//= require _app
+//= require _app2

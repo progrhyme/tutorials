@@ -6,13 +6,13 @@ title: ToDo アプリ - powered by Middleman
 .container ng-controller="MainController"
   .page-header
     h1 ToDo
-  form.input-group.input-group-lg ng-submit="addTodo()"
+  form.input-group.input-group-lg ng-controller="RegisterController" ng-submit="addTodo()"
     input.form-control.input-lg(type="text" required placeholder="新しい要件を入力" ng-model="newTitle")
     span.input-group-btn
       button.btn.btn-default type="submit" 追加
   hr
 
-  .btn-toolbar
+  .btn-toolbar ng-controller="ToolbarController"
     .btn-group
       button.btn.btn-success ng-click="checkAll()" 全て完了/未了
     .btn-group
@@ -30,9 +30,9 @@ title: ToDo アプリ - powered by Middleman
 
   hr
 
-  ul.list-unstyled
+  ul.list-unstyled ng-controller="TodoListController"
     li.todo-item(
-      ng-repeat="todo in todos | filter:currentFilter"
+      ng-repeat="todo in todoList | filter:currentFilter"
       ng-class="{done: todo.done, editing: todo == editing}"
     )
       form.input-group.input-group-lg name="todoForm" ng-submit="doneEdit(todoForm)"

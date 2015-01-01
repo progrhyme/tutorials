@@ -47,17 +47,5 @@ title: Welcome to Middleman
           my-select="todo == editing" ng-blur="doneEdit(todoForm)"
         )
         span.input-group-btn.del-btn ng-if="todo != editing"
-    li.todo-item.done
-      form.input-group.input-group-lg
-        label.input-group-addon
-          input(type="checkbox" checked)
-        p.form-control.input-lg.todo-title 完了した ToDo
-        span.input-group-btn.del-btn
-          button.btn.btn-danger type="reset" 削除
-    li.todo-item.editing
-      form.input-group.input-group-lg
-        label.input-group-addon
-          input type="checkbox"
-        input.form-control.input-lg(type="text" required value="編集中の ToDo")
           button.btn.btn-danger type="reset" ng-click="removeTodo(todo)" 削除
 

@@ -1,9 +1,56 @@
 //colors
+$white: #fff;
+$color_chestnut_approx: #b94a48;
+$black_75: rgba(0, 0, 0, .075);
+$color_sanguine_brown_approx: #953b39;
+$color_petite_orchid_approx: #d59392;
 $color_suva_gray_approx: #888;
 
+body {
+    padding-top: 60px;
+}
+.location-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    background-color: $white;
+    .input-group-addon {
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 0;
+    }
+    .btn {
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 0;
+    }
+    .form-control {
+        cursor: default;
+        background-color: $white;
+    }
+}
+.ng-invalid {
+    border-color: $color_chestnut_approx;
+    //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 1px 1px $black_75;
+    &:focus {
+        border-color: $color_sanguine_brown_approx;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: inset 0 1px 1px $black_75, 0 0 6px $color_petite_orchid_approx;
+    }
+}
+.col-md {
+    width: 25%;
+}
+.col-sm {
+    width: 20%;
+}
 .todo-item .todo-title {
     color: $color_suva_gray_approx;
 }
 .done .todo-title {
     text-decoration: line-through;
+}
+.table tbody > tr > td {
+    vertical-align: middle;
 }

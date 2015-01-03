@@ -51,6 +51,7 @@
 # Gem
 ###
 require 'slim'
+set :slim, { :pretty => true, :sort_attrs => false, :format => :html5 }
 
 set :css_dir, 'stylesheets'
 

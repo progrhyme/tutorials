@@ -1,0 +1,27 @@
+div ng-show="lines"
+  h1
+    | 帳票詳細 \#{{ id }}
+  p
+    | 作成日時:  {{ createdAt | date:'yyyy/MM/dd HH:mm' }}
+  table.table
+    colgroup.col-md span="4"
+    thead
+      tr
+        th 商品名
+        th 単価
+        th 個数
+        th 小計
+    tbody
+      tr ng-repeat="orderLine in lines"
+        td ng-bind="orderLine.productName"
+        td ng-bind="orderLine.unitPrice | number"
+        td ng-bind="orderLine.count | number"
+        td ng-bind="getSubtotal(orderLine) | number"
+    tfoot
+      tr
+        td colspan="3"  合計:
+        td ng-bind="getTotalAmount(lines) | number"
+.alert.alert-danger ng-hide="lines"
+  | 存在しない帳票を参照しています。
+  a.alert-link href="#/new"  新しい帳票を作る
+

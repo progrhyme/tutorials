@@ -1,0 +1,9 @@
+h1 帳票一覧
+ul ng-show="list"
+  li ng-repeat="sheet in list"
+    | \#{{ sheet.id }}
+    | {{ sheet.createdAt | date:'yyyy/MM/dd HH:mm' }}
+    a ng-href="#/sheet/{{ sheet.id }}" 詳細を確認する
+.alert.alert-info ng-hide="list"
+  | 帳票が存在しません。
+  a.alert-link href="#/new" 新しい帳票を作る

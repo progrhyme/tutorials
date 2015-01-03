@@ -1,8 +1,28 @@
 ---
-title: Welcome to Middleman
+title: 帳票アプリ by middleman
 ---
 
-.welcome
-  h1 Middleman is Watching
-  p.doc
-    == link_to "Read Online Documentation", "http://middlemanapp.com/"
+.location-bar
+/! Header Nav
+header.container
+  nav.navbar.navbar-default
+    .navbar-header
+      a.navbar-brand href="./"  帳票アプリ
+    .navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          a href="#/"  帳票一覧
+        li
+          a href="#/new"  帳票作成
+/! Header Nav End
+
+.container ng-view=""
+
+script#index-tmpl type="text/ng-template"
+  == partial "tmpl/_ng-index"
+
+script#new-tmpl type="text/ng-template"
+  == partial "tmpl/_ng-new"
+
+script#sheet-tmpl type="text/ng-template"
+  == partial "tmpl/_ng-sheet"

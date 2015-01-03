@@ -1,0 +1,37 @@
+h1 帳票作成
+form(novalidate name="sheetForm" ng-submit="save()")
+  table.table
+    colgroup
+    colgroup.col-sm span="3" 
+    colgroup
+    thead
+      tr
+        th 商品名
+        th 単価
+        th 個数
+        th 小計
+        th
+    tbody
+      tr ng-repeat=("orderLine in lines") 
+        td
+          input.form-control ng-model="orderLine.productName" required="" type="text" /
+        td
+          input.form-control min="0" ng-model="orderLine.unitPrice" ng-pattern="integer" required="" type="number" /
+        td
+          input.form-control min="0" ng-model="orderLine.count" ng-pattern="integer" required="" type="number" /
+        td ng-bind="getSubtotal(orderLine) | number"
+        td
+          button.btn.btn-default.btn-block ng-click="removeLine(orderLine)" ng-disabled="disabledDelBtn" type="button"  削除
+    tfoot
+      tr
+        td colspan="3"  合計:
+        td colspan="2" ng-bind="getTotalAmount(lines) | number"
+  .alert.alert-danger ng-show="sheetForm.$invalid" 
+    span ng-show="sheetForm.$error.required"  空欄が存在しています。
+    span ng-show="sheetForm.$error.min"  単価、個数の最小値は 0 です。
+    span ng-show="sheetForm.$error.pattern"  単価、個数は整数で指定してください。
+  div
+    button.btn.btn-primary ng-click="addLine()" type="button"  明細行を追加
+    button.btn.btn-danger ng-click="initialize()" type="button"  帳票を初期化
+    button.btn.btn-success ng-disabled="sheetForm.$invalid" type="submit"  帳票を保存
+

@@ -1,7 +1,9 @@
 //= require _angular-1.2.28.min
-angular.module('App', [])
-.service('todos', ['$rootScope', '$filter', function ($scope, $filter) {
-  var list = [];
+//= require _ngStorage.min
+angular.module('App', ['ngStorage'])
+.service('todos', ['$rootScope', '$filter', '$localStorage', function ($scope, $filter, $localStorage) {
+  $scope.$storage = $localStorage.$default({ list: [] });
+  var list = $scope.$storage.list;
 
   $scope.$watch(function () {
     return list;

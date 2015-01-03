@@ -75,4 +75,14 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+
+  # for GitHub Pages
+  activate :asset_host, :host => "/middleman-angular-tutorial2"
+end
+
+# Deploy to GitHub Pages
+activate :deploy do |deploy|
+  deploy.build_before = true
+  deploy.method = :git
+  deploy.branch = 'gh-pages'
 end

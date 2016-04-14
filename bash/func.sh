@@ -9,5 +9,11 @@ func() {
   echo ${2:-"undefined - ${var}"};
 }
 
+ns::f() {
+  echo "Func with Namespace"
+}
+
 func a b
 func a
+
+ns::f

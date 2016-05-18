@@ -26,7 +26,8 @@ class Foo
   private :bar
 
   def self.baz
-    bar()
+    foo2
+    bar
   end
 end
 

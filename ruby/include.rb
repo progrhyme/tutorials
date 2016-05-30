@@ -20,6 +20,12 @@ class C
   def foo
     priv_method
   end
+
+  def self.bar
+    M.class_method
+    #pub_method #=> undefined
+    #priv_method #=> undefined
+  end
 end
 
 M.class_method
@@ -33,3 +39,5 @@ c = C.new
 c.pub_method
 #c.priv_method #=> error
 c.foo
+
+C.bar

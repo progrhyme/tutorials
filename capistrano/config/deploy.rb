@@ -34,6 +34,8 @@ set :deploy_to, '/home/key-amb/ec2it'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+set :message, fetch(:message, 'default message')
+
 namespace :deploy do
 
   after :restart, :clear_cache do
@@ -48,6 +50,7 @@ namespace :deploy do
   task :foo do
     on release_roles(:app) do
       info 'Do something for :app server'
+      info fetch(:message)
       execute :hostname
     end
   end

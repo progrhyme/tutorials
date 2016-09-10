@@ -1,0 +1,1 @@
+Dir['./lib/tasks/*.thor'].each { |f| load f }

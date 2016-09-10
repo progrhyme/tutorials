@@ -3,6 +3,6 @@ class Foo < Thor
 
   desc 'default', 'say :foo'
   def default
-    p :foo
+    MyBatch::Foo.new.run
   end
 end

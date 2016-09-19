@@ -1,0 +1,43 @@
+class App < Thor
+  include Thor::Actions
+  class_option :verbose, aliases: 'v', type: :boolean, default: false
+
+  desc 'work', 'Sample command in workdir'
+  def work
+    c = config
+    inside 'workdir', verbose: options[:verbose] do
+      pwd = run 'pwd', capture: true
+      say "PWD: #{pwd}"
+      ret = run 'false'
+      say "RESULT: #{ret}"
+    end
+  end
+
+  desc 'dialog', 'Sample dialog'
+  def dialog name='...'
+    say "Hello, #{name}", :bold
+    if yes? 'Do you know how useful thor is?', :bold
+      say 'Wondeful!', [:magenta, :bold]
+    else
+      say %(It's a shame.), [:blue, :bold]
+    end
+
+    say ''
+    answer = ask 'Then, tell me the name of who you fell in love with for the first time:', :bold
+    if answer.length.nonzero?
+      say "#{answer} ... OK. I remember.", [:magenta, :bold]
+    else
+      say %(OK. I'll ask you again later), [:blue, :bold]
+    end
+
+    say ''
+    say 'Bye!', :bold
+  end
+
+  private
+
+  def config
+    { verbose: options[:verbose] }
+  end
+end
+# vim:set ft=ruby :

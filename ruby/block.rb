@@ -14,6 +14,25 @@ class HooksHandler
       h.call i
     end
   end
+
+  def run_hooks
+    @hooks.each do |h|
+      instance_eval(&h)
+    end
+  end
+
+  module Verbose
+    def say(str)
+      puts str
+    end
+  end
+
+  include Verbose
+
+  def exec_hook(&hook)
+    @x = :exec
+    instance_eval(&hook)
+  end
 end
 
 handler = HooksHandler.new
@@ -22,8 +41,12 @@ handler.register do |x|
 end
 
 handler.register do |x|
-  y = x * x
-  p "arg: #{x}, gen: #{y}. 2nd hook"
+  p "#{x} 2nd hook"
+end
+
+handler.exec_hook do
+  say "say x = #{@x} - 3rd hook"
 end
 
 handler.do_hooks
+handler.run_hooks

@@ -6,6 +6,10 @@ truly() {
   return 0
 }
 
+truly2() {
+  return
+}
+
 falsy() {
   return 1
 }
@@ -22,5 +26,9 @@ fi
 if ! falsy; then
   echo false
 fi
+
+truly2
+
+echo end
 
 exit

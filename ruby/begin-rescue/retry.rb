@@ -12,16 +12,16 @@ end
 def retry_on_error2(times: 3)
   try = 0
   begin
+    try += 1
     yield
   rescue
-    try += 1
     retry if try < times
     raise
   end
 end
 
 @try = 0
-retry_on_error do
+retry_on_error2 do
   @try += 1
   p @try
   raise "Failed after #{@try} trials."

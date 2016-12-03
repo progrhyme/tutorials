@@ -1,0 +1,63 @@
+require 'parallel'
+
+def invoke(task)
+  Rake::Task[task].invoke
+end
+
+def execute(task)
+  Rake::Task[task].execute
+end
+
+def parallel(*tasks)
+  Parallel.each(tasks) do |task|
+    invoke(task)
+  end
+end
+
+task :all do
+  invoke :prepare
+  begin
+    invoke :start
+    begin
+      invoke :main
+      parallel :job_foo, :job_bar
+      3.times { |i| p i; execute :job_to_iterate }
+      invoke :finalize
+    end
+  ensure
+    invoke :clean_up
+  end
+end
+task default: :all
+
+task :prepare do
+  p :prepare
+end
+
+task :start do
+  p :start
+end
+
+task :main do
+  p :main
+end
+
+task :job_foo do
+  p :job_foo
+end
+
+task :job_bar do
+  p :job_bar
+end
+
+task :job_to_iterate do
+  p :job_to_iterate
+end
+
+task :finalize do
+  p :finalize
+end
+
+task :clean_up do
+  p :clean_up
+end

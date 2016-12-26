@@ -4,7 +4,7 @@ require 'benchmark'
 
 n = 1_000_000
 
-Benchmark.bm(7, '>total:', '>avg:') do |x|
+Benchmark.bm(7) do |x|
   tn = x.report('lambda:') do
     n.times do
       foo = -> {
@@ -19,6 +19,4 @@ Benchmark.bm(7, '>total:', '>avg:') do |x|
       end
     end
   end
-
-  [tn + tm, (tn + tm) / 2]
 end

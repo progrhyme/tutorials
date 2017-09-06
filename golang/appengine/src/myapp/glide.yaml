@@ -1,0 +1,9 @@
+package: myapp
+import:
+- package: google.golang.org/appengine
+  subpackages:
+  - log
+- package: golang.org/x/net
+  subpackages:
+  - context
+

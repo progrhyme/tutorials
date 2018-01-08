@@ -1,5 +1,5 @@
-# config valid only for current version of Capistrano
-lock "3.7.2"
+# config valid for current version and patch releases of Capistrano
+lock "~> 3.10.1"
 
 set :application, "ec2it"
 set :repo_url, "git@github.com:key-amb/ruby-ec2it.git"

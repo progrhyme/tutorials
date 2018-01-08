@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.1"
 
-set :application, "ec2it"
-set :repo_url, "git@github.com:key-amb/ruby-ec2it.git"
+set :application, "tutorials"
+set :repo_url, "git@github.com:progrhyme/tutorials.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "#{Pathname.new(ENV['HOME']).join(fetch(:application))}"
+# set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -29,16 +29,11 @@ set :deploy_to, "#{Pathname.new(ENV['HOME']).join(fetch(:application))}"
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
+# Default value for local_user is ENV['USER']
+# set :local_user, -> { `git config user.name`.chomp }
+
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
-  task :foo do
-    on release_roles(:all) do
-      info 'Do something for all servers'
-      execute :hostname
-    end
-  end
-end
-
-after 'deploy:publishing', 'deploy:foo'
+# Uncomment the following to require manually verifying the host key before first deploy.
+# set :ssh_options, verify_host_key: :secure

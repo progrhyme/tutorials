@@ -3,9 +3,9 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server 'myserver', user: 'key-amb', roles: %w[app]
-role :foo, %w[myserver], user: 'key-amb'
-role :bar, %w[myserver], user: 'key-amb'
+server 'myserver', user: 'progrhyme', roles: %w[app]
+role :foo, %w[myserver], user: 'progrhyme'
+role :bar, %w[myserver], user: 'progrhyme'
 
 #set :message, 'message for personal'
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value

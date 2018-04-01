@@ -16,6 +16,8 @@ class OptionTest extends FunSuite {
     case _ => None
   }
 
+  def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+
   test("lookupByName") {
     assert(lookupByName("Joe") === Some(Employee("Joe", "X")))
     assert(lookupByName("Mr.X") === None)
@@ -39,5 +41,27 @@ class OptionTest extends FunSuite {
     assert(stringToInt("0").getOrElse(-1) === 0)
     assert(stringToInt("03").getOrElse(-1) === -1)
     assert(stringToInt("000").getOrElse(-1) === -1)
+  }
+
+  test("flatMap") {
+    val toDepartment = (employee: Employee) => Some(employee.department)
+    assert(lookupByName("Joe").flatMap(toDepartment) === Some("X"))
+    assert(lookupByName("Mr.X").flatMap(toDepartment) === None)
+  }
+
+  test("lift") {
+    val abs0: Option[Double] => Option[Double] = lift(math.abs)
+    assert(abs0(Some(-1.0)) === Some(1.0))
+  }
+
+  test("map2") {
+    assert(Option.map2(None, None)((x: Int, y: Int) => x + y) === None)
+    assert(Option.map2(None, Some(4))((x: Int, y: Int) => x + y) === None)
+    assert(Option.map2(Some(2), Some(4))((x: Int, y: Int) => x + y) === Some(6))
+  }
+
+  test("traverse") {
+    assert(Option.traverse(List("3", "-5", "0"))(stringToInt) === Some(List(3, -5, 0)))
+    assert(Option.traverse(List("3", "-5", "0", "03"))(stringToInt) === None)
   }
 }

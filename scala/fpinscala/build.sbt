@@ -1,4 +1,4 @@
-name := "SBTScalaTestExample"
+name := "fpinscala"
 
 version := "0.1"
 

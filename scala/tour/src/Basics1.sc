@@ -36,3 +36,6 @@ println(addOne(1))
 
 val getTheAnswer = () => 42
 println(getTheAnswer())
+
+val addCurried = (x: Int) => ((y: Int) => x + y)
+addCurried(10)(20)

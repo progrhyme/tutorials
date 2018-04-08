@@ -82,6 +82,11 @@ trait Stream[+A] {
   def exists(p: A => Boolean): Boolean =
     foldRight(false)((a, b) => p(a) || b) // Here `b` is the unevaluated recursive step that folds the tail of the stream. If `p(a)` returns `true`, `b` will never be evaluated and the computation terminates early.
 
+  def exists2(p: A => Boolean): Boolean = this match {
+    case Cons(h, t) => p(h()) || t().exists2(p)
+    case _ => false
+  }
+
   /*
   Since `&&` is non-strict in its second argument, this terminates the traversal as soon as a nonmatching element is found.
   */

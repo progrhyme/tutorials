@@ -32,3 +32,6 @@ Stream(1,2,3,4).zipWithAll(Stream("a", "b", "c"))((n, s) => {
     case _ => "<default>"
   }
 }).toList
+
+Stream.from(1).startsWith(Stream(1,2,3))
+Stream.from(1).startsWith(Empty)

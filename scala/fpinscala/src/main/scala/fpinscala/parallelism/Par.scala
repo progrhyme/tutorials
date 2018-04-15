@@ -68,6 +68,11 @@ object Par {
   def sequence[A](as: List[Par[A]]): Par[List[A]] =
     map(sequenceBalanced(as.toIndexedSeq))(_.toList)
 
+  def parMap[A,B](ps: List[A])(f: A => B): Par[List[B]] = fork {
+    val fbs: List[Par[B]] = ps.map(asyncF(f))
+    sequence(fbs)
+  }
+
   def parFilter[A](l: List[A])(f: A => Boolean): Par[List[A]] = {
     val pars: List[Par[List[A]]] =
       l map (asyncF((a: A) => if (f(a)) List(a) else List()))

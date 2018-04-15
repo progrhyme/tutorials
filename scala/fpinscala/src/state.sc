@@ -34,3 +34,32 @@ i + (n-1) - mod // overflow
 def rollDie: RNG.Rand[Int] = RNG.map(RNG.nonNegativeLessThan(6))(_ + 1)
 
 val zero = rollDie(SimpleRNG(5))._1
+
+val int: State.Rand[Int] = State(RNG.int)
+
+int.run(rng)._1
+
+def ints(count: Int): State.Rand[List[Int]] =
+  State.sequence(List.fill(count)(int))
+
+val ns: State.Rand[List[Int]] =
+  int.flatMap(x =>
+    int.flatMap(y =>
+      ints(x).map(xs =>
+        xs.map(_ % y))))
+
+val ns2: State.Rand[List[Int]] = for {
+  x <- int
+  y <- int
+  xs <- ints(x)
+} yield xs.map(_ % y)
+
+val machineAccepting = Machine(true, 5, 5)
+val machineServing = Candy.update(Coin)(machineAccepting)
+val machineAccepting2 = Candy.update(Turn)(machineServing)
+
+val machineRunOut = Machine(true, 0, 10)
+Candy.update(Coin)(machineRunOut)
+
+val li = List(Coin, Turn, Coin, Coin, Turn, Coin)
+val sm = Candy.simulateMachine(li).run(machineAccepting)

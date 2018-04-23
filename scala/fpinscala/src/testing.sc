@@ -1,22 +1,5 @@
-import org.scalacheck._
-import org.scalacheck.Prop.forAll
-
-val intList = Gen.listOf(Gen.choose(0, 100))
-val prop =
-  forAll(intList)(ns => ns.reverse.reverse == ns) &&
-  forAll(intList)(ns => ns.headOption == ns.reverse.lastOption)
-val failingProp = forAll(intList)(ns => ns.reverse == ns)
-
-prop.check
-failingProp.check
-
-val sumProp =
-  forAll(intList)(ns => ns.sum == ns.reverse.sum) &&
-  forAll(intList)(ns => ns.sum >= ns.headOption.getOrElse(0))
-
-sumProp.check
-
-import fpinscala.testing.{Gen => Gen2}
+import fpinscala.testing._
+import fpinscala.testing.Prop.forAll
 import fpinscala.state._
 
 case class SimpleRNG(seed: Long) extends RNG {
@@ -30,7 +13,12 @@ case class SimpleRNG(seed: Long) extends RNG {
 
 val rng = SimpleRNG(42)
 
-Gen2.boolean.sample.run.apply(rng)
+Gen.boolean.sample.run.apply(rng)
 
-val gen01 = Gen2.boolean.map(b => if(b) 1 else 0)
+val gen01 = Gen.boolean.map(b => if(b) 1 else 0)
 
+val smallInt = Gen.choose(-10, 10)
+val maxProp = forAll(Gen.listOf(smallInt)) { ns =>
+  val max = ns.max
+  !ns.exists(_ > max)
+}

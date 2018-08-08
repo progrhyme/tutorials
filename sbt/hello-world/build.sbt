@@ -1,6 +1,6 @@
 // The simplest possible sbt build file is just one line:
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 // That is, to create a valid sbt build, all you've got to do is define the
 // version of Scala you'd like your project to use.
 
@@ -8,7 +8,7 @@ scalaVersion := "2.12.4"
 
 // Lines like the above defining `scalaVersion` are called "settings" Settings
 // are key/value pairs. In the case of `scalaVersion`, the key is "scalaVersion"
-// and the value is "2.12.4"
+// and the value is "2.12.6"
 
 // It's possible to define many kinds of settings, such as:
 
@@ -23,10 +23,9 @@ version := "1.0"
 
 // Want to use a published library in your project?
 // You can define other libraries as dependencies in your build like this:
-libraryDependencies += "org.typelevel" %% "cats-core" % "1.0.1"
+libraryDependencies += "org.typelevel" %% "cats-core" % "1.1.0"
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.0"
-
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the cats dependency to the set of dependencies that sbt will go
 // and fetch when it starts up.
@@ -36,7 +35,7 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % 
 // TIP: To find the "dependency" that you need to add to the
 // `libraryDependencies` set, which in the above example looks like this:
 
-// "org.typelevel" %% "cats-core" % "1.0.1"
+// "org.typelevel" %% "cats-core" % "1.1.0"
 
 // You can use Scaladex, an index of all known published Scala libraries. There,
 // after you find the library you want, you can just copy/paste the dependency
@@ -68,11 +67,10 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % 
 //   settings(
 //     inThisBuild(List(
 //       organization := "ch.epfl.scala",
-//       scalaVersion := "2.12.4"
+//       scalaVersion := "2.12.6"
 //     )),
 //     name := "hello-world"
 //   )
 
 // To learn more about multi-project builds, head over to the official sbt
 // documentation at http://www.scala-sbt.org/documentation.html
-

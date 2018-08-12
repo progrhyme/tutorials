@@ -145,8 +145,8 @@ object Monoid {
 
   // we perform the mapping and the reducing both in parallel
   def parFoldMap[A,B](v: IndexedSeq[A], m: Monoid[B])(f: A => B): Par[B] =
-    Par.parMap(v)(f).flatMap { bs =>
-      foldMapV(bs, par(m))(b => Par.lazyUnit(b))
+    Par.parMap(v)(f).flatMap { bs: IndexedSeq[B] =>
+      foldMapV(bs, par(m))((b: B) => Par.lazyUnit(b))
     }
 
   sealed trait WC

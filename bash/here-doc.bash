@@ -15,6 +15,15 @@ foo
 bar
 EOS
 
+str=$(cat <<EOS
+foo
+  bar
+    baz
+EOS
+)
+
+echo "$str"
+
 exit
 
 : <<'__EOF__'

@@ -12,7 +12,14 @@ struct Cli {
 
 fn main() {
     let args = Cli::from_args();
-    let content = std::fs::read_to_string(&args.path).expect("could not read file");
+
+    let result = std::fs::read_to_string(&args.path);
+    let content = match result {
+        Ok(content) => content,
+        Err(error) => {
+            panic!("Can't deal with {}, just exit here", error);
+        }
+    };
     for line in content.lines() {
         if line.contains(&args.pattern) {
             println!("{}", line);

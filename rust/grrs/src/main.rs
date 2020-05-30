@@ -10,19 +10,18 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-fn main() {
+#[derive(Debug)]
+struct CustomError(String);
+
+fn main() -> Result<(), CustomError> {
     let args = Cli::from_args();
 
-    let result = std::fs::read_to_string(&args.path);
-    let content = match result {
-        Ok(content) => content,
-        Err(error) => {
-            panic!("Can't deal with {}, just exit here", error);
-        }
-    };
+    let content = std::fs::read_to_string(&args.path)
+        .map_err(|err| CustomError(format!("Error reading `{}`: {}", &args.path.display(), err)))?;
     for line in content.lines() {
         if line.contains(&args.pattern) {
             println!("{}", line);
         }
     }
+    Ok(())
 }
